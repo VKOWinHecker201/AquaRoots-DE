@@ -7,7 +7,7 @@
 
 ## Overview
 
-**AquaRoot DE** is a modern, macOS-inspired desktop environment built from scratch for Linux, powered by the modular **wlroots** / **Wayfire** compositor stack. It combines the fluid aesthetics of "Liquid Glass" (translucent blurred surfaces, dynamic drop shadows, and specular highlights) with powerful Wayland protocols and lightweight native Python/GTK4 daemons.
+**AquaRoot DE** is a modern, macOS-inspired desktop environment built from scratch for Linux, powered by the modular **wlroots** / **Wayfire** compositor stack. It powerful Wayland protocols and lightweight native Python/GTK4 daemons.
 
 ---
 
