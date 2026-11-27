@@ -2,7 +2,7 @@
 
 ### 2. `CHANGELOG.md`
 
-```markdown
+
 # Changelog — AquaRoot DE
 
 All notable changes to the **AquaRoot Desktop Environment** are documented in this file.
