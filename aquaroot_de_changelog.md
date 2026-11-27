@@ -1,42 +1,47 @@
-# Changelog
+---
 
-All notable changes to **AquaRoot DE** will be documented in this file.
+### 2. `CHANGELOG.md`
+
+```markdown
+# Changelog — AquaRoot DE
+
+All notable changes to the **AquaRoot Desktop Environment** are documented in this file.
 
 ---
 
-## [2.0.0] - 2026-10-22
+## [3.0.0] — Complete Desktop Ecosystem Release
+
 ### Added
-- **macOS-Style System Settings App**: Completely redesigned `aquaroot-settings.py` featuring a translucent glass sidebar, left-aligned window traffic-light controls, macOS Apple ID profile card, searchable categories, and grouped Liquid Glass preference cards.
-- **Dynamic Top-Center Notch**: Introduced `aquaroot-notch.py`, a dynamic island anchored via `gtk4-layer-shell` that dynamically shifts based on system state:
-  - **Idle State**: Displays battery percentage and estimated time remaining.
-  - **Active Media State**: Automatically fetches track metadata and playback status via the **MPRIS D-Bus Protocol**, displaying playback controls and a live seek bar in the compact notch.
-  - **Hover Expansion**: Smoothly expands on mouse hover to reveal a 3-card Liquid Glass dashboard containing full Media controls, live local Weather (via wttr.in), and Battery power telemetry.
-- **Advanced Optional Software Installer**: Added an extensive modular software selection menu to the installation script covering:
-  - **Graphics & Layout**: GIMP, Inkscape, Darktable, MyPaint.
-  - **System & Administration**: GParted, Timeshift, Flatseal, Warehouse, Baobab (Disk Usage Analyzer).
-  - **Audio & Video**: HandBrake, Lollypop, Amberol, Parabolic, Pitivi.
-  - **Productivity & Communication**: LibreOffice, Evolution, Geary, Fragments, Transmission.
-  - **Development & Text Editing**: GNOME Builder, Geany, Meld.
-  - **Flatpak & App Ecosystem**: Automated Flatpak installation alongside GNOME Software integration.
-- **Smart Self-Healing Installer & GitHub Source Builder**: Enhanced `install-aquaroot-complete.sh` with automated error parsing, dpkg/pacman lock healing, and fallback source compilation (Meson/Ninja and Cargo) for systems missing precompiled binary packages (such as Wayfire, pixdecor, swww, and gtk4-layer-shell).
+* **Dynamic Notch v2 (`aquaroot-notch.py`):** Added a drag-and-drop **Dropover File Holding Shelf** (`Gtk.DropTarget` + `Gtk.DragSource`) inside the expanded notch alongside MPRIS media playback, interactive seek bar, live `wttr.in` weather, and battery time-remaining telemetry.
+* **Control Center & Notification Daemon (`aquaroot-notifications.py`):** Implemented an `org.freedesktop.Notifications` D-Bus server with Liquid Glass toast popups and a slide-out Control Center drawer (`Super + N`) featuring Wi-Fi, Bluetooth, Do Not Disturb, Night Shift (`wlsunset`), Focus Modes, and brightness/audio sliders.
+* **Interactive Desktop Widgets (`aquaroot-widgets.py`):** Added a `Gtk4LayerShell.Layer.BACKGROUND` widget layer for desktop Clock/Agenda, live CPU/RAM LevelBars, and persistent Quick Notes.
+* **Stage Manager Strip (`aquaroot-stagemanager.py`):** Added a toggleable left-side window strip (`Super + S`) communicating with Wayfire's UNIX IPC socket (`WAYFIRE_SOCKET`).
+* **Spotlight v2 (`aquaroot-spotlight.py`):** Upgraded Spotlight (`Super + Space` / `Super + V`) with a 25-entry Clipboard History viewer (`clip:`), live Unit & Currency Converter (`100 usd to inr`, `72 f to c`), and system Quick Actions.
+* **Screen Capture, 60fps Recorder & OCR Studio (`aquaroot-screenshot.py`):** Added a floating capture bar (`Super + Shift + 5`) wrapping `grim`, `slurp`, `wf-recorder`, and `tesseract` for instant clipboard OCR text extraction.
+* **Volume & Brightness OSD (`aquaroot-osd.py`):** Added hardware media key bindings in `wayfire.ini` with auto-dismissing Liquid Glass OSD capsules.
+* **AquaDrop Wireless Continuity (`aquaroot-aquadrop.py`):** Added a local Wi-Fi file drop server (`Port 8088`) and KDE Connect pairing utility.
+* **Time Machine Backup Studio (`aquaroot-timemachine.py`):** Added one-click `$HOME` configuration snapshot archiving/restoration and Timeshift GUI launcher.
+* **Solar Time-of-Day Wallpaper Mode (`aquaroot-wallpaper.sh --solar`):** Automatically selects sunrise, daylight, dusk, or night 4K wallpapers based on the system clock.
+* **XDG Desktop Portal Integration:** Configured `xdg-desktop-portal-wlr` and `xdg-desktop-portal-gtk` (`aquaroot-portals.conf`) for native Wayland screen sharing in OBS, Discord, and browsers.
 
 ---
 
-## [1.5.0] - 2026-10-21
+## [2.0.0] — Self-Healing Source Builder, Dynamic Notch & macOS Settings
+
 ### Added
-- **QuickLook File Previewer**: Integrated GNOME Sushi with Nautilus to allow instant spacebar previews for images, PDFs, audio, video, and code files inside a floating Liquid Glass window.
-- **Custom Liquid Glass Readability & Settings Engine**: Added `aquaroot-glass-ctl.py` to allow real-time adjustment of glass opacity, Kawase blur passes, refraction offset, specular rim intensity, and high-contrast readability modes.
-- **Hardware Telemetry Widget**: Added a zero-dependency system telemetry monitor inside the top bar displaying live CPU usage, RAM utilization, and thermal sensor temperatures.
-- **macOS Spotlight Clone**: Implemented `aquaroot-spotlight.py` (`Super + Space`) for fast application launching, file searching, and live math evaluation.
-- **First-Boot Onboarding Assistant**: Created `aquaroot-welcome.py`, a macOS-inspired setup wizard that runs on first login to guide users through initial Liquid Glass preferences and wallpaper selection.
+* **Self-Healing Installer & GitHub Source Compiler:** Added automatic package manager lock/dpkg repair and automated source compilation (`meson`, `ninja`, `cargo`) from GitHub when binary packages (`wayfire`, `pixdecor`, `swww`, `gtk4-layer-shell`, `gtklock`) are missing from distro repositories.
+* **Dynamic Notch v1:** Introduced top-center `gtk4-layer-shell` overlay with MPRIS2 D-Bus media integration, hover `Gtk.Revealer` expansion, weather card, and `/sys/class/power_supply/BAT*` discharge time calculation.
+* **Refined macOS System Settings (`aquaroot-settings.py`):** Rebuilt Settings with frameless Liquid Glass styling, Traffic Light window controls, user profile card, colorful squircle sidebar icons, and inset grouped cards.
+* **AquaRoot CLI (`aquaroot-cli`):** Added command-line doctor (`aquaroot-cli doctor`), live glass tuner, and shell restarter.
 
 ---
 
-## [1.0.0] - 2026-10-21
+## [1.0.0] — Initial Liquid Glass Prototype
+
 ### Added
-- **Initial Release of AquaRoot DE**
-- **Compositor Core**: Built on Wayfire / wlroots with support for 2D/3D mesh deformations, Kawase/Bokeh background blur, and `squeezimize` Genie minimize/restore animations.
-- **Liquid Glass Aesthetic Engine**: Custom GTK4 CSS theme featuring specular inner bevels, chromatic frost tinting, and dynamic drop shadows across panels and windows.
-- **Dynamic Top Bar**: Custom Python top bar featuring the distribution logo system menu, D-Bus Global Menu registrar support (`com.canonical.AppMenu.Registrar`), clock, and built-in headless `yt-dlp` + `mpv` YouTube Audio player plugin.
-- **Parabolic Magnification Dock**: Custom layer-shell dock featuring Gaussian hover icon magnification and foreign-toplevel integration.
-- **Wallpaper & Biometric Lock Screen**: Integrated `swww` for fluid animated wallpaper transitions, online wallpaper fetching from Wallhaven, and a dynamic lock screen supporting parallel Face ID (`howdy`) and Touch ID (`fprintd`) PAM authentication.
+* **Core Compositor Setup (`wayfire.ini`):** Configured Wayfire with Kawase blur, `pixdecor` rounded traffic-light titlebars, `squeezimize` Genie minimize animations, and 3-finger trackpad workspace swipes.
+* **Master Liquid Glass Stylesheet (`gtk.css`):** Created specular rim-highlighted translucent GTK3/GTK4 theme and Finder-style Nautilus sidebar customization.
+* **Dynamic Top Bar (`aquaroot-topbar.py`):** Built top panel with distro logo detection, Global Menu bar, YouTube audio streamer (`yt-dlp` + `mpv` IPC), and `/proc` hardware telemetry widget.
+* **Parabolic Dock (`aquaroot-dock.py`):** Implemented bottom launcher dock with Gaussian hover magnification.
+* **Spotlight v1 & First-Boot Welcome App (`aquaroot-welcome.py`):** Added initial app/math/file search overlay and first-login onboarding wizard.
+* **Biometric Lock Screen (`hyprlock.conf`):** Configured `howdy` (Face ID) and `fprintd` (Touch ID) PAM stack with macOS-style lock screen clock.
