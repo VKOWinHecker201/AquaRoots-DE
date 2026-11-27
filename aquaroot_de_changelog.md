@@ -1,7 +1,5 @@
 ---
 
-### 2. `CHANGELOG.md`
-
 
 # Changelog — AquaRoot DE
 
